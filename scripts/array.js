@@ -1469,35 +1469,35 @@ const mappedUsers = [
 // Arrays: For each task you need to create separate function
 
 // 1. Sort the array of users by "first" name in ascending order. (userSorted)
-const sortArrByFirstName = (arr) => {
-  return arr.sort((a, b) => a.name.first.localeCompare(b.name.first));
+const sortUsersByName = (users) => {
+  return users.sort((a, b) => a.name.first.localeCompare(b.name.first));
 };
 // console.log(sortArrByFirstName(userSorted));
 
 // 2. Calculate the total salary of all users and log the overall amount. (customersSalary)
-const calculateTotalSalery = (arr) => {
-  return arr.reduce((sum, el) => sum + +el.salary, 0);
+const calculateTotalSalery = (customersSalary) => {
+  return customersSalary.reduce((sum, el) => sum + +el.salary, 0);
 };
 // console.log(calculateTotalSalery(customersSalary));
 
 // 3. Create a new array that filters out all users whose friend count is less than 8. (filterUser)
-const filtereUser = (arr) => {
-  return arr.filter((el) => el.friends.length < 8);
+const filtereUser = (users) => {
+  return users.filter((el) => el.friends.length < 8);
 };
 // console.log(filtereUser(filterUser));
 
 // 4. Map over the user array to collect all friends into a single array. (mappedUsers)
-const collectAllFriends = (arr) => {
-  return arr.reduce((newArr, el) => newArr.concat(el.friends), []);
+const getAllFriends = (users) => {
+  return users.reduce((newArr, el) => newArr.concat(el.friends), []);
 };
-// console.log(collectAllFriends(mappedUsers));
+// console.log(getAllFriends(mappedUsers));
 
 // 5. Aggregate the data and create a new array from the user array, including the following fields: _id, name, and isActive. (mappedUsers)
-const aggregateData = (arr) => {
+const getAggregateUsers = (users) => {
   return arr.map((el) => ({
     _id: el._id,
     name: el.name,
     isActive: el.isActive,
   }));
 };
-// console.log(aggregateData(mappedUsers));
+// console.log(getAggregateUsers(mappedUsers));
