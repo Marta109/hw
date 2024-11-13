@@ -1,12 +1,65 @@
 body {
-  background: #c8b6ff;
+  background: #7d56ff;
+  
 }
 
 .container {
   padding: 25px;
+  color: black;
+  background: rgb(235, 234, 234);
+  border-radius: 10px;
+  box-shadow: 12px 12px 24px rgba(22, 2, 49, 0.64);
 }
 
-button[disabled] {
+.title {
+  background: #d6d6d6;
+  text-align: center;
+  font-family: 'Merriweather', serif;
+  color: black;
+  opacity: 0.7;
+  font-size: 4em;
+  font-weight: normal;
+  padding: 10px 40px;
+  margin: 10px auto;
+  line-height: 1;
+  text-shadow:
+    2px 2px 4px rgba(179, 147, 211, 0.1),
+    3px 4px 4px rgba(179, 147, 211, 0.15),
+    4px 6px 4px rgba(179, 147, 211, 0.2),
+    5px 8px 4px rgba(179, 147, 211, 0.25);
+  max-width: 700px;
+  border-radius: 10px;
+  box-shadow: 12px 12px 24px rgba(79, 194, 209, 0.64);
+}
+
+.btn-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.btn-container button {
+  min-width: 150px;
+  min-height: 60px;
+  color: white;
+  display: inline-flex;
+  font-size: 15px;
+  align-items: center;
+  justify-content: center;
+  color: #313133;
+  background: linear-gradient(90deg, rgb(213, 129, 230) 0%, #7d56ff 100%);
+  border-radius: 1000px;
+  box-shadow: 12px 12px 24px rgba(129, 101, 167, 0.64);
+  padding: 10px;
+}
+
+.btn-container button:hover {
+  color: white;
+  background: linear-gradient(90deg, #7d56ff 0%, rgb(186, 92, 198) 100%);
+  box-shadow: 12px 12px 24px rgba(144, 75, 162, 0.64);
+}
+
+.btn-container button[disabled] {
   border: 1px solid black;
   background-color: grey;
   color: black;

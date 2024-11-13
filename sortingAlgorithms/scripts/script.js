@@ -2,9 +2,9 @@ import sortFunctions from './sortFunctions.js';
 
 const btnContainer = document.querySelector('.btn-container');
 const resultContainer = document.querySelector('.result-container');
-const inputFild = document.querySelector('#inputArray');
+const inputField = document.querySelector('#inputArray');
 
-const disabledBtns = (value = '') => {
+const disableBtns = (value = '') => {
   const buttons = btnContainer.querySelectorAll('button');
 
   if (value.trim() != '') {
@@ -14,10 +14,7 @@ const disabledBtns = (value = '') => {
   }
 };
 
-disabledBtns();
-resultContainer.classList.add('none');
-
-const arrFormatted = (value) => {
+const formatArr = (value) => {
   value = value.trim('');
   let result;
   if (value.includes(',')) {
@@ -25,6 +22,7 @@ const arrFormatted = (value) => {
   } else {
     result = value.replace(/\s+/g, ' ').split(' ');
   }
+
   return result.map(Number);
 };
 
@@ -33,7 +31,7 @@ const validateInput = (value) => {
   const isValid = /^[0-9, ]*$/.test(value);
   if (!isValid) {
     errorMessage.classList.remove('none');
-    disabledBtns();
+    disableBtns();
   } else {
     errorMessage.classList.add('none');
   }
@@ -44,16 +42,19 @@ const showResult = (values) => {
   const result = resultContainer.querySelectorAll('p');
   result[0].textContent = `[${values[0]}]`;
   result[1].textContent = `[${values[1]}]`;
-  disabledBtns();
+  disableBtns();
 };
 
 const hideResult = () => {
   resultContainer.classList.add('none');
 };
 
-inputArray.addEventListener('input', (e) => {
+disableBtns();
+hideResult();
+
+inputField.addEventListener('input', (e) => {
   let inputValue = e.target.value;
-  disabledBtns(inputValue);
+  disableBtns(inputValue);
   validateInput(inputValue);
   hideResult();
 });
@@ -80,10 +81,10 @@ const calculateWithCacheFunction = () => {
 const sortArr = calculateWithCacheFunction();
 btnContainer.addEventListener('click', (e) => {
   if (e.target.id) {
-    const arr = arrFormatted(inputFild.value);
+    const arr = formatArr(inputField.value);
 
     let result = sortArr(arr, sortFunctions[e.target.id]);
     showResult(result);
-    inputFild.value = '';
+    inputField.value = '';
   } else return;
 });
