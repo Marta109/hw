@@ -76,7 +76,6 @@ console.log(numbers.customFilter((num) => num > 10));
 
 //todo 2.Через рекурсию, т.к. sumTo(n) = n + sumTo(n-1) for n > 1.
 // const sumTo = (num, sum = 0) => {
-//   debugger;
 //   if (num >= 1) {
 //     sum += num;
 //     return sumTo(--num, sum);

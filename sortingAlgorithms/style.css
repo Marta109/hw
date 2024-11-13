@@ -1,0 +1,30 @@
+body {
+  background: #c8b6ff;
+}
+
+.container {
+  padding: 25px;
+}
+
+button[disabled] {
+  border: 1px solid black;
+  background-color: grey;
+  color: black;
+  cursor: not-allowed;
+}
+
+.error-message {
+  color: red;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.none {
+  display: none;
+}
+
+.result-container p {
+  letter-spacing: 5px;
+  color: green;
+  font-weight: bold;
+}

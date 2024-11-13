@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="scss">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>Sorting Algorithm</title>
+  </head>
+
+  <body>
+    <div class="container">
+      <label for="inputArray"
+        >Please enter the array with spaces '&nbsp;&nbsp;&nbsp;&nbsp;' or commas
+        '&nbsp;,&nbsp;' between the numbers.
+      </label>
+      <input
+        type="text"
+        placeholder="Array 1, 2, 10, 15 or 1 2 10 15"
+        id="inputArray"
+      />
+
+      <div class="error-message none">
+        <p>Invalid input. Only numbers and commas are allowed.</p>
+      </div>
+
+      <div class="result-container">
+        <h2>Array:</h2>
+        <p></p>
+        <h2>Sorted Array"</h2>
+        <p></p>
+      </div>
+      <div class="btn-container">
+        <button type="button" id="bubbleSort">Bubble Sort</button>
+        <button type="button" id="selectionSort">Selection Sort</button>
+        <button type="button" id="insertionSort">Insertion Sort</button>
+        <button type="button" id="mergeSort">Merge Sort</button>
+      </div>
+    </div>
+    <script type="module" src="./scripts/script.js"></script>
+  </body>
+</html>
