@@ -59,31 +59,65 @@ inputField.addEventListener('input', (e) => {
   clearResultDisplay();
 });
 
-const createCachedSortFunction = () => {
-  let cache = new Map();
+// const createCachedSortFunction = () => {
+//   let cache = new Map();
 
-  return function calculate(arr, sortFunction) {
+//   return function calculate(arr, sortFunction) {
+//     let key = arr + '';
+
+//     if (cache.has(key)) {
+//       console.log('cache result');
+//       return [key, cache.get(key)];
+//     }
+
+//     const sortedArr = sortFunction(arr);
+//     cache.set(key, sortedArr);
+//     console.log(cache);
+
+//     return [key, sortedArr];
+//   };
+// };
+
+// const cachedSort = createCachedSortFunction();
+// btnContainer.addEventListener('click', (e) => {
+//   if (e.target.id) {
+//     const arr = parseInputToArray(inputField.value);
+
+//     let result = cachedSort(arr, sortFunctions[e.target.id]);
+//     showResult(result);
+//     inputField.value = '';
+//   } else return;
+// });
+
+
+//todo  --- cache  class based implementation---------------------------------------
+
+class CachedSort {
+  constructor() {
+    this.cache = new Map();
+  }
+
+  calculate(arr, sortFunction) {
     let key = arr + '';
 
-    if (cache.has(key)) {
+    if (this.cache.has(key)) {
       console.log('cache result');
-      return [key, cache.get(key)];
+      return [key, this.cache.get(key)];
     }
 
     const sortedArr = sortFunction(arr);
-    cache.set(key, sortedArr);
-    console.log(cache);
+    this.cache.set(key, sortedArr);
+    console.log(this.cache);
 
     return [key, sortedArr];
-  };
-};
+  }
+}
 
-const cachedSort = createCachedSortFunction();
+const cachedSort = new CachedSort();
 btnContainer.addEventListener('click', (e) => {
   if (e.target.id) {
     const arr = parseInputToArray(inputField.value);
-
-    let result = cachedSort(arr, sortFunctions[e.target.id]);
+    let result = cachedSort.calculate(arr, sortFunctions[e.target.id]);
     showResult(result);
     inputField.value = '';
   } else return;
