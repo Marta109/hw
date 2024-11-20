@@ -4,7 +4,7 @@ const btnContainer = document.querySelector('.btn-container');
 const resultContainer = document.querySelector('.result-container');
 const inputField = document.querySelector('#inputArray');
 
-const disableBtns = (value = '') => {
+const toggleButtonsState = (value = '') => {
   const buttons = btnContainer.querySelectorAll('button');
 
   if (value.trim() != '') {
@@ -14,7 +14,7 @@ const disableBtns = (value = '') => {
   }
 };
 
-const formatArr = (value) => {
+const parseInputToArray = (value) => {
   value = value.trim('');
   let result;
   if (value.includes(',')) {
@@ -26,12 +26,12 @@ const formatArr = (value) => {
   return result.map(Number);
 };
 
-const validateInput = (value) => {
+const validateArrayInput = (value) => {
   const errorMessage = document.querySelector('.error-message');
   const isValid = /^[0-9, ]*$/.test(value);
   if (!isValid) {
     errorMessage.classList.remove('none');
-    disableBtns();
+    toggleButtonsState();
   } else {
     errorMessage.classList.add('none');
   }
@@ -42,24 +42,24 @@ const showResult = (values) => {
   const result = resultContainer.querySelectorAll('p');
   result[0].textContent = `[${values[0]}]`;
   result[1].textContent = `[${values[1]}]`;
-  disableBtns();
+  toggleButtonsState();
 };
 
-const hideResult = () => {
+const clearResultDisplay = () => {
   resultContainer.classList.add('none');
 };
 
-disableBtns();
-hideResult();
+toggleButtonsState();
+clearResultDisplay();
 
 inputField.addEventListener('input', (e) => {
   let inputValue = e.target.value;
-  disableBtns(inputValue);
-  validateInput(inputValue);
-  hideResult();
+  toggleButtonsState(inputValue);
+  validateArrayInput(inputValue);
+  clearResultDisplay();
 });
 
-const calculateWithCacheFunction = () => {
+const createCachedSortFunction = () => {
   let cache = new Map();
 
   return function calculate(arr, sortFunction) {
@@ -78,12 +78,12 @@ const calculateWithCacheFunction = () => {
   };
 };
 
-const sortArr = calculateWithCacheFunction();
+const cachedSort = createCachedSortFunction();
 btnContainer.addEventListener('click', (e) => {
   if (e.target.id) {
-    const arr = formatArr(inputField.value);
+    const arr = parseInputToArray(inputField.value);
 
-    let result = sortArr(arr, sortFunctions[e.target.id]);
+    let result = cachedSort(arr, sortFunctions[e.target.id]);
     showResult(result);
     inputField.value = '';
   } else return;
