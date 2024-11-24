@@ -42,8 +42,8 @@ class User {
     this.bankAccounts.set(accountId, account);
     return accountId;
   }
-  pay(accountID, amount) {
-    if (!this.bankAccounts.has(accountID)) {
+  pay(accountId, amount) {
+    if (!this.bankAccounts.has(accountId)) {
       return `Invalid account ID`;
     } else {
       const account = this.bankAccounts.get(accountId);
@@ -52,8 +52,8 @@ class User {
     }
   }
 
-  receive(accountID, amount) {
-    if (!this.bankAccounts.has(accountID)) {
+  receive(accountId, amount) {
+    if (!this.bankAccounts.has(accountId)) {
       return `Invalid account ID`;
     } else {
       const account = this.bankAccounts.get(accountId);
@@ -62,7 +62,11 @@ class User {
     }
   }
 
-  getBalance(accountID) {
+  getBalance(accountId) {
+    if (!this.bankAccounts.has(accountId)) {
+      return `Invalid account ID`;
+    }
+
     const account = this.bankAccounts.get(accountId);
     return account.getBalance();
   }
@@ -87,3 +91,14 @@ console.log(accountId);
 console.log(user.pay(accountId, 300));
 console.log(user.receive(accountId, 100));
 console.log(user.getBalance(accountId));
+
+console.log('------second bank account-----');
+const account2 = new BankAccount(1000);
+const accountId2 = user.addBankAccount(account2);
+
+console.log(user.fullName);
+console.log(user.getId);
+console.log(accountId2);
+console.log(user.pay(accountId2, 300));
+console.log(user.receive(accountId2, 100));
+console.log(user.getBalance(accountId2));
